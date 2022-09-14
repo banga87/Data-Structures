@@ -1,3 +1,6 @@
+from ast import Return
+
+
 class HashMap:
 
     def __init__(self, array_size):
@@ -46,4 +49,36 @@ class HashMap:
             # Collision
             collisions += 1
         
-        return 
+        return
+
+    def retrieve(self, key):
+        retrieval_index = self.compressor(hash(key))
+        retrieval_value = self.array[retrieval_index]
+
+        # No Value
+        if retrieval_value == None:
+            return None
+
+        # Same key
+        if retrieval_value[0] == key:
+            return retrieval_value[1]
+
+        # Collision
+        collisions = 1
+
+        while retrieval_value[0] != key:
+            new_retrieval_index = self.compressor(hash(key, collisions))
+            new_retrieval_value = self.array[new_retrieval_index]
+
+            # No value
+            if new_retrieval_value == None:
+                return None
+
+            # Same key
+            if new_retrieval_value[0] == key:
+                return new_retrieval_value[1]
+            
+            # Collision
+            collisions += 1
+
+        return
