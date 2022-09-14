@@ -1,7 +1,3 @@
-from email.errors import NonPrintableDefect
-from multiprocessing import current_process
-from platform import node
-from types import NoneType
 import Node
 
 class DoubleLinkedList:
